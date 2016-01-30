@@ -1,0 +1,59 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>{{shelter.name}}</h1>
+
+<p> This shelter has a capacity of {{shelter.maximum_capacity}} and currently has {{shelter.current_occupancy}} puppies </p>
+<p><strong>{{message}}</strong></p>
+
+<h2>Available Puppies</h2>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+	{% for message in messages %}
+	<li><strong> {{ message }} </strong></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+{% for pup in puppies %}
+{% if not pup.owners %}
+<div>
+<h3><a href="{{ url_for('viewOnePuppy',shelter_id = shelter.id, puppy_id = pup.id) }}">{{pup.name}}</a></h3>
+<img src="{{pup.picture}}" height="100" width = "100" >
+<p> Gender: {{pup.gender}} Weight: {{pup.weight}} Birthday: {{pup.dateOfBirth}}</p>
+	<p><a href="{{ url_for('adoptPuppy', shelter_id=shelter.id, puppy_id = pup.id) }}">Adopt </a><a href="{{ url_for('editPuppy', shelter_id=shelter.id, puppy_id = pup.id) }}"> Edit</a> <a href="{{ url_for('deletePuppy', shelter_id=shelter.id, puppy_id = pup.id) }}"> Delete </a></p>
+</ul>
+</div>
+
+{% endif %}
+{% endfor %}
+
+<h2>Puppies Adopted From This Shelter</h2>
+{% for pup in puppies %}
+{% if pup.owners %}
+<div>
+<h3><a href="{{ url_for('viewOnePuppy',shelter_id = shelter.id, puppy_id = pup.id) }}">{{pup.name}}</a></h3>
+<img src="{{pup.picture}}" height="100" width = "100" >
+<p> Gender: {{pup.gender}} Weight: {{pup.weight}} Birthday: {{pup.dateOfBirth}}</p>
+<p> Owner(s): 
+	{% for o in pup.owners %}
+	{{o.name}}
+	{% endfor %} </p>
+	<p><a href="{{ url_for('editPuppy', shelter_id=shelter.id, puppy_id = pup.id) }}"> Edit</a> <a href="{{ url_for('deletePuppy', shelter_id=shelter.id, puppy_id = pup.id) }}"> Delete </a></p>
+</ul>
+</div>
+
+{% endif %}
+{% endfor %}
+
+<p><a href="{{ url_for('newPuppy', shelter_id=shelter.id) }}"> Add New Puppy </a></p>
+<p><a href="{{ url_for('viewAllShelters') }}"> Return Home </a></p>
+
+</body>
+
+</html>

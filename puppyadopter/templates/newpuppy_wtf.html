@@ -1,0 +1,14 @@
+{% from "_formhelpers.html" import render_field %}
+<h1>Add a New Puppy</h1>
+<form action="{{ url_for('newPuppy',shelter_id = shelter.id) }}" method = 'post'>
+	
+  <dl>
+    {{ render_field(form.name) }}
+    {{ render_field(form.gender) }}
+    {{ render_field(form.birth) }}
+    {{ render_field(form.weight) }}
+  </dl>
+  <p><input type=submit value=Add New Puppy>
+</form>
+
+<a href="{{ url_for('viewOneShelter',shelter_id = shelter.id) }}">Cancel and Return</a>

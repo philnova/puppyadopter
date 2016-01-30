@@ -1,0 +1,22 @@
+<html>
+<body>
+
+<h1>Add a Puppy to {{shelter.name}}</h1>
+
+<form action="{{ url_for('newPuppy',shelter_id = shelter.id) }}" method = 'post'>
+	<p>Name: 
+		<input type='text' size='30' name='name' value='Fido'> </p>
+	<p>Gender: 
+		<input type="radio" name="gender" value="male" checked> Male 
+  		<input type="radio" name="gender" value="female"> Female<br> </p>
+	<p>Weight: 
+		<input type='text' size='30' name='weight' value='20.00'> </p>
+	<p>Birthday:
+		<input type="date" name="birth" max="2015-12-25"></p>
+	<input type='submit' value='Create'>
+</form>
+
+<a href="{{ url_for('viewOneShelter',shelter_id = shelter.id) }}">Cancel and Return</a>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>The Puppy Rescue Project</h1>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+	{% for message in messages %}
+	<li><strong> {{ message }} </strong></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<p><a href="{{ url_for('registerOwner') }}">Register as an Owner</a></p>
+<p><a href="{{ url_for('viewAllShelters') }}">View Local Shelters</a></p>
+<p><a href="{{ url_for('viewAllOwners') }}">View Owner Profiles</a></p>
+
+</body>
+</html>

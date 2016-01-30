@@ -1,0 +1,17 @@
+<html>
+<body>
+
+<h1>Adopt a Puppy: {{puppy.name}}</h1>
+
+<h3>Who will be the new owner(s) of this puppy? Check all that apply</h3>
+<form action="{{ url_for('adoptPuppy',shelter_id = shelter_id, puppy_id = puppy.id) }}" method = 'post'>
+	{% for owner in owner_list %}
+	<input type="checkbox" name="possible_owner" value="{{owner.id}}"> {{owner.name}}<br>
+	{% endfor %}
+	<input type='submit' value='Confirm Adoption'>
+</form>
+
+<a href="{{ url_for('viewOneShelter',shelter_id = shelter_id) }}">Cancel and Return</a>
+
+</body>
+</html>

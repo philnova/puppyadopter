@@ -1,0 +1,12 @@
+{% from "_formhelpers.html" import render_field %}
+<h1>Register as a New Owner</h1>
+<h3>Only Registered Owners Can Adopt Puppies!</h3>
+<form action="{{ url_for('registerOwner') }}" method = 'post'>
+	
+  <dl> {{ render_field(form.name) }}
+
+  </dl>
+  <p><input type=submit value=Register New Owner>
+</form>
+
+<a href="{{ url_for('mainPage') }}">Cancel and Return</a>

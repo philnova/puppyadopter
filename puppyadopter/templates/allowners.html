@@ -1,0 +1,13 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Registered Owners</h1>
+{% for owner in owner_dict.keys() %}
+<h2>{{owner}}</h2> <p>Dogs Owned: {{owner_dict[owner]}}<p>
+{% endfor %}
+
+<a href="{{ url_for('mainPage') }}">Return to the Main Page</a>
+</body>
+</html>

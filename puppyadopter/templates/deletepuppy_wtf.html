@@ -1,0 +1,10 @@
+{% from "_formhelpers.html" import render_field %}
+<form action="{{ url_for('deletePuppy',shelter_id = shelter.id, puppy_id = puppy.id) }}" method = 'post'>
+	<h1>Delete {{puppy.name}}?</h1>
+  <dl>
+    {{ render_field(form.confirm_delete) }}
+  </dl>
+  <p><input type=submit value=Confirm Selection>
+</form>
+
+<a href="{{ url_for('viewOneShelter',shelter_id = shelter.id) }}">Cancel and Return</a>

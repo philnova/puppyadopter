@@ -1,0 +1,19 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>Local Shelters</h1>
+{% for shelter in shelters %}
+{% if shelter.maximum_capacity %}
+<h2><a href="{{ url_for('viewOneShelter', shelter_id = shelter.id) }}">{{shelter.name}}</a></h2>
+<p>Location: {{shelter.city}}, {{shelter.state}}</p>
+<p>Current Occupancy: {{shelter.current_occupancy}}  Capacity: {{shelter.maximum_capacity}}</p>
+<p><a href="http://{{shelter.website}}">Website</a></p>
+{% endif %}
+{% endfor %}
+
+<a href="{{ url_for('mainPage') }}">Back to the Main Page</a>
+
+</body>
+</html>

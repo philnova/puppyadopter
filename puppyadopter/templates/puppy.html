@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>{{puppy.name}}</h1>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+	{% for message in messages %}
+	<li><strong> {{ message }} </strong></li>
+	{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<div>
+<h3>{{puppy.name}}</h3>
+<img src="{{puppy.picture}}" height="100" width = "100" >
+<p> Gender: {{puppy.gender}} Weight: {{puppy.weight}} Birthday: {{puppy.dateOfBirth}}</p>
+	{% if not puppy.owners %}<p><a href="{{ url_for('adoptPuppy', shelter_id=shelter.id, puppy_id = puppy.id) }}">Adopt </a>{% endif %}<a href="{{ url_for('editPuppy', shelter_id=shelter.id, puppy_id = puppy.id) }}"> Edit</a> <a href="{{ url_for('deletePuppy', shelter_id=shelter.id, puppy_id = puppy.id) }}"> Delete </a></p>
+</ul>
+</div>
+
+{% if puppy.owners %}
+<p> Owner(s): 
+	{% for o in puppy.owners %}
+	{{o.name}}
+	{% endfor %} </p>
+{% endif %}
+
+<p><a href="{{ url_for('viewOneShelter', shelter_id = shelter.id) }}"> Return to {{shelter.name}}</a></p>
+<p><a href="{{ url_for('viewAllShelters') }}"> Return Home </a></p>
+
+</body>
+
+</html>
