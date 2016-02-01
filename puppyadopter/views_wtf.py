@@ -13,6 +13,18 @@ import datetime
 
 # define forms
 
+
+
+class BaseForm(Form):
+    @classmethod
+    def append_field(cls, name, field):
+        setattr(cls, name, field)
+        return cls
+
+from forms import TestForm
+form = TestForm.append_field("do_you_want_fries_with_that",BooleanField('fries'))
+form.append_field("do_you_want_a_burger_with_that",BooleanField('burger'))
+
 class RegisterOwnerForm(Form):
 	name = StringField('Name', [validators.Required(), validators.Length(min=1,max=200,message='Please enter a name between 1 and 200 characters')])
 
